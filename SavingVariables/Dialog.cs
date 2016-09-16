@@ -30,7 +30,7 @@ namespace SavingVariables
 
         public string ListAllItem(string variable, string value)
         {
-            return string.Format("{0} -> {1}", variable, value);
+            return string.Format("'{0}' -> '{1}'", variable, value);
         }
 
         public string ClearVariableResponse(string variable)
