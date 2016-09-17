@@ -50,7 +50,7 @@ namespace SavingVariables
 
         public string HelpResponse()
         {
-            return string.Format("List of Commands: \n\nclear|delete|remove x - Removes saved variable from database. Replace 'x' with any variable of your choosing. \n\nexit|quit - Exits the program. \n\nlastq - Shows last entered command or expression. \n\nshow all - Shows all saved variables and their stored values.");
+            return string.Format("List of Valid Commands: \n\nclear | delete | remove x - Removes saved variable from database. Replace 'x' with any variable of your choosing. \n\nclear | delete | remove all - Removes ALL saved variables from database. \n\nexit | quit - Exits the program. \n\nlastq - Shows last entered command or expression. \n\nshow all - Shows all saved variables and their stored values.");
         }
     }
 }
