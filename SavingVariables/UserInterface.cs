@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SavingVariables
 {
-    class UserInterface
+    public class UserInterface
     {
+
     }
 }

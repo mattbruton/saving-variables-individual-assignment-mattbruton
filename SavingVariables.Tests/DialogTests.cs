@@ -105,7 +105,7 @@ namespace SavingVariables.Tests
         {
             Dialog test = new Dialog();
 
-            string expected_string = "List of Commands: \n\nclear x - Removes saved variable from database. Replace 'x' with any variable of your choosing. \n\nexit|quit - Exits the program.";
+            string expected_string = "List of Commands: \n\nclear|delete|remove x - Removes saved variable from database. Replace 'x' with any variable of your choosing. \n\nexit|quit - Exits the program. \n\nlastq - Shows last entered command or expression. \n\nshow all - Shows all saved variables and their stored values.";
 
             Assert.AreEqual(expected_string, test.HelpResponse());
         }
