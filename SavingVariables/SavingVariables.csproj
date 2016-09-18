@@ -52,6 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\VariableContext.cs" />
+    <Compile Include="DAL\VariableRepository.cs" />
+    <Compile Include="Dialog.cs" />
+    <Compile Include="Models\Variable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
