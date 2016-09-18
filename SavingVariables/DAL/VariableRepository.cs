@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SavingVariables.Models;
+using System.Data.Entity;
 
 namespace SavingVariables.DAL
 {
-    class VariableRepository
+    public class VariableRepository
     {
     }
 }
