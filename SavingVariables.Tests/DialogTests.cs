@@ -44,7 +44,7 @@ namespace SavingVariables.Tests
             string test_variable = "x";
             string expected_string = "  = Error! 'x' is already defined!";
 
-            Assert.AreEqual(expected_string, test.ErrorNewVariableResponse("x"));
+            Assert.AreEqual(expected_string, test.ErrorNewVariableResponse(test_variable));
         }
 
         [TestMethod]
