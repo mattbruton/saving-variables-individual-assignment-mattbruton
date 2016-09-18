@@ -10,6 +10,9 @@ namespace SavingVariables
     {
         static void Main(string[] args)
         {
+            Dialog UI = new Dialog();
+            Console.WriteLine(UI.HelpResponse());
+            Console.ReadKey();
         }
     }
 }
