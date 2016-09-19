@@ -1,9 +1,6 @@
-﻿using System;
+﻿using SavingVariables.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SavingVariables.Models;
 
 namespace SavingVariables.DAL
 {
@@ -17,6 +14,11 @@ namespace SavingVariables.DAL
         public VariableRepository(VariableContext _context)
         {
             Context = _context;
+        }
+
+        public List<Variable> GetVariables()
+        {
+            return Context.Variables.ToList();
         }
     }
 }
