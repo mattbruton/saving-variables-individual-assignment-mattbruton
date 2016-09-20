@@ -27,6 +27,9 @@ namespace SavingVariables.Tests.DAL
             mock_variable_table.As<IQueryable<Variable>>().Setup(x => x.GetEnumerator()).Returns(() => queryable_list.GetEnumerator());
 
             mock_context.Setup(x => x.Variables).Returns(mock_variable_table.Object);
+
+            mock_variable_table.Setup(t => t.Add(It.IsAny<Variable>())).Callback((Variable v) => variable_list.Add(v));
+            mock_variable_table.Setup(t => t.Remove(It.IsAny<Variable>())).Callback((Variable v) => variable_list.Remove(v));
         }
 
         [TestInitialize]
@@ -70,12 +73,61 @@ namespace SavingVariables.Tests.DAL
             Assert.AreEqual(expected_variable_count, actual_variable_count);
         }
 
-        // add item
+        [TestMethod]
+        public void RepoEnsureRepoCanAddVariablesToDb()
+        {
+            repo.AddVariable("a", 2);
+
+            int actual_variable_count = repo.GetVariables().Count;
+            int expected_variable_count = 1;
+
+            Assert.AreEqual(expected_variable_count, actual_variable_count);
+        }
+
+        [TestMethod]
+        public void RepoEnsureRepoCanAddMultipleVariables()
+        {
+            repo.AddVariable("a", 2);
+            repo.AddVariable("b", 3);
+            repo.AddVariable("c", 4);
+
+            int actual_variable_count = repo.GetVariables().Count;
+            int expected_variable_count = 3;
+
+            Assert.AreEqual(expected_variable_count, actual_variable_count);
+        }
+
+        [TestMethod]
+        public void RepoEnsureRepoCanFindSingleVariableByName()
+        {
+            variable_list.Add(new Variable { Id = 1, Name = "a", Value = 2 });
+            variable_list.Add(new Variable { Id = 2, Name = "b", Value = 2 });
+            variable_list.Add(new Variable { Id = 3, Name = "c", Value = 2 });
+
+            Variable actual_variable = repo.FindVariableByName("b");
+            int actual_variable_id = actual_variable.Id;
+            int expected_variable_id = 2;
+
+            Assert.AreEqual(expected_variable_id, actual_variable_id);
+        }
+
+        [TestMethod]
+        public void RepoEnsureRepoCanRemoveAllVariables()
+        {
+            variable_list.Add(new Variable { Id = 1, Name = "a", Value = 2 });
+            variable_list.Add(new Variable { Id = 2, Name = "b", Value = 2 });
+            variable_list.Add(new Variable { Id = 3, Name = "c", Value = 2 });
+
+            repo.RemoveAllVariables();
+            int actual_variable_count = repo.GetVariables().Count;
+            int expected_variable_count = 0;
+
+            Assert.AreEqual(expected_variable_count, actual_variable_count);
+        }
+
+
         // need to test:
-        // return all items
-        // return single with multiple in database
         // remove single item
-        // clear all items
 
         // think of more fringe case scenarios
     }

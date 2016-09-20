@@ -20,5 +20,37 @@ namespace SavingVariables.DAL
         {
             return Context.Variables.ToList();
         }
+
+        public void AddVariable(string variable, int value)
+        {
+            Variable new_var = new Variable { Name = variable.ToLower(), Value = value };
+            Context.Variables.Add(new_var);
+            Context.SaveChanges();
+        }
+
+        public Variable FindVariableByName(string name)
+        {
+            List<Variable> relevant_variables = Context.Variables.ToList();
+
+            foreach(Variable variable in relevant_variables)
+            {
+                if(variable.Name == name)
+                {
+                    return variable;
+                }
+            }
+            return null;
+        }
+
+        public void RemoveAllVariables()
+        {
+            List<Variable> all_variables = Context.Variables.ToList();
+
+            foreach (Variable variable in all_variables)
+            {
+                Context.Variables.Remove(variable);
+            }
+            Context.SaveChanges();
+        }
     }
 }
