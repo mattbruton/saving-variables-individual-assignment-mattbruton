@@ -8,6 +8,43 @@ namespace SavingVariables
 {
     public class UserInterface
     {
+        Dialog dialog = new Dialog();
+        string user_choice;
+        public void PromptUser()
+        {
+            Console.Write(dialog.Prompt());
+            user_choice = Console.ReadLine();
+        }
+        public void AcceptUserInputForAction(string input)
+        {
+            switch (input)
+            {
+                case "remove all":
+                case "clear all":
+                case "delete all":
+                    {
+                        break;
+                    }
+                case "exit":
+                case "quit":
+                    {
+                        Console.WriteLine(dialog.ExitResponse());
+                        break;
+                    }
+                case "lastp":
+                    {
+                        break;
+                    }
+                case "show all":
+                    {
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
+        }
 
     }
 }

@@ -137,11 +137,7 @@ namespace SavingVariables.Tests.DAL
             int expected_variable_count = 2;
 
             Assert.AreEqual(expected_variable_count, actual_variable_count);
-
         }
-        // need to test:
-        // remove single item
-
         // think of more fringe case scenarios
     }
 }
