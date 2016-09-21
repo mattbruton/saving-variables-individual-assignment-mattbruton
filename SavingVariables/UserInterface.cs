@@ -9,6 +9,7 @@ namespace SavingVariables
     public class UserInterface
     {
         Dialog dialog = new Dialog();
+        Stack stack = new Stack();
         string user_choice;
         public void PromptUser()
         {
@@ -33,6 +34,7 @@ namespace SavingVariables
                     }
                 case "lastp":
                     {
+                        //Console.WriteLine(stack.LastExpOrCommand)
                         break;
                     }
                 case "show all":
