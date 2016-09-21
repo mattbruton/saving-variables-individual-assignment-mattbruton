@@ -52,5 +52,19 @@ namespace SavingVariables.DAL
             }
             Context.SaveChanges();
         }
+
+        public void RemoveVariable(string name)
+        {
+            List<Variable> all_variables = Context.Variables.ToList();
+
+            foreach(Variable variable in all_variables)
+            {
+                if (variable.Name.Contains(name))
+                {
+                    Context.Variables.Remove(variable);
+                    Context.SaveChanges();
+                }
+            }
+        }
     }
 }

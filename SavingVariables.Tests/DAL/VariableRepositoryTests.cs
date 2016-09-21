@@ -125,7 +125,20 @@ namespace SavingVariables.Tests.DAL
             Assert.AreEqual(expected_variable_count, actual_variable_count);
         }
 
+        [TestMethod]
+        public void RepoEnsureRepoCanRemoveVariableByName()
+        {
+            variable_list.Add(new Variable { Id = 1, Name = "a", Value = 2 });
+            variable_list.Add(new Variable { Id = 2, Name = "b", Value = 2 });
+            variable_list.Add(new Variable { Id = 3, Name = "c", Value = 2 });
 
+            repo.RemoveVariable("a");
+            int actual_variable_count = repo.GetVariables().Count;
+            int expected_variable_count = 2;
+
+            Assert.AreEqual(expected_variable_count, actual_variable_count);
+
+        }
         // need to test:
         // remove single item
 
