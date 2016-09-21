@@ -18,7 +18,8 @@ namespace SavingVariables
         }
         public void AcceptUserInputForAction(string input)
         {
-            switch (input)
+            stack.SetLastExpOrCommand(input);
+            switch (input.ToLower())
             {
                 case "remove all":
                 case "clear all":
@@ -34,10 +35,11 @@ namespace SavingVariables
                     }
                 case "lastp":
                     {
-                        //Console.WriteLine(stack.LastExpOrCommand)
+                        Console.WriteLine(stack.LastExpOrCommand);
                         break;
                     }
                 case "show all":
+                case "list all":
                     {
                         break;
                     }
