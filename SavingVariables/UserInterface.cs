@@ -9,8 +9,10 @@ namespace SavingVariables
     public class UserInterface
     {
         Dialog dialog = new Dialog();
+        Assignment assignment = new Assignment();
         Stack stack = new Stack();
-        string user_choice;
+
+        public string user_choice;
         public void PromptUser()
         {
             Console.Write(dialog.Prompt());
@@ -31,6 +33,7 @@ namespace SavingVariables
                 case "quit":
                     {
                         Console.WriteLine(dialog.ExitResponse());
+                        Console.ReadKey();
                         break;
                     }
                 case "lastp":
@@ -45,6 +48,11 @@ namespace SavingVariables
                     }
                 default:
                     {
+                        assignment.CheckIfUserInputIsValid(input);
+                        if (assignment.IsInputValid)
+                        {
+                            Console.WriteLine(dialog.SaveNewVariableResponse(assignment.AssignmentVariable, assignment.AssignmentValue.ToString()));
+                        }
                         break;
                     }
             }
