@@ -71,7 +71,7 @@
     <Compile Include="DAL\VariableContext.cs" />
     <Compile Include="DAL\VariableRepository.cs" />
     <Compile Include="Dialog.cs" />
-    <Compile Include="Expression.cs" />
+    <Compile Include="Assignment.cs" />
     <Compile Include="Migrations\201609182114278_InitialCreate.cs" />
     <Compile Include="Migrations\201609182114278_InitialCreate.Designer.cs">
       <DependentUpon>201609182114278_InitialCreate.cs</DependentUpon>
