@@ -30,41 +30,27 @@ namespace SavingVariables.DAL
 
         public Variable FindVariableByName(string name)
         {
-            List<Variable> relevant_variables = Context.Variables.ToList();
-
-            foreach(Variable variable in relevant_variables)
-            {
-                if(variable.Name == name)
-                {
-                    return variable;
-                }
-            }
-            return null;
+            Variable relevant_variable = Context.Variables.FirstOrDefault(v => v.Name == name);
+            return relevant_variable;
         }
 
         public void RemoveAllVariables()
         {
-            List<Variable> all_variables = Context.Variables.ToList();
+            List<Variable> all_variables = GetVariables();
 
             foreach (Variable variable in all_variables)
             {
-                Context.Variables.Remove(variable);
+                RemoveVariable(variable.Name);
             }
+
             Context.SaveChanges();
         }
 
         public void RemoveVariable(string name)
         {
-            List<Variable> all_variables = Context.Variables.ToList();
-
-            foreach(Variable variable in all_variables)
-            {
-                if (variable.Name.Contains(name))
-                {
-                    Context.Variables.Remove(variable);
-                    Context.SaveChanges();
-                }
-            }
+            Variable variable_to_remove = FindVariableByName(name);
+            Context.Variables.Remove(variable_to_remove);
+            Context.SaveChanges();
         }
     }
 }
