@@ -11,7 +11,7 @@ namespace SavingVariables
         Dialog dialog = new Dialog();
         Assignment assignment = new Assignment();
         Stack stack = new Stack();
-
+        public bool UserIsReadyToExit;
         public string user_choice;
         public void PromptUser()
         {
@@ -32,6 +32,7 @@ namespace SavingVariables
                 case "exit":
                 case "quit":
                     {
+                        UserIsReadyToExit = true;
                         Console.WriteLine(dialog.ExitResponse());
                         Console.ReadKey();
                         break;

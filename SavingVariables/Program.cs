@@ -11,7 +11,8 @@ namespace SavingVariables
         static void Main(string[] args)
         {
             UserInterface UI = new UserInterface();
-            while (true)
+
+            while (!UI.UserIsReadyToExit)
             {                            
                 UI.PromptUser();
                 UI.AcceptUserInputForAction(UI.user_choice);
