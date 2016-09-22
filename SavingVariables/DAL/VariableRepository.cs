@@ -30,7 +30,7 @@ namespace SavingVariables.DAL
 
         public Variable FindVariableByName(string name)
         {
-            Variable relevant_variable = Context.Variables.FirstOrDefault(v => v.Name == name);
+            Variable relevant_variable = Context.Variables.FirstOrDefault(v => v.Name == name.ToLower());
             return relevant_variable;
         }
 
@@ -40,7 +40,7 @@ namespace SavingVariables.DAL
 
             foreach (Variable variable in all_variables)
             {
-                RemoveVariable(variable.Name);
+                RemoveVariable(variable.Name.ToLower());
             }
 
             Context.SaveChanges();
