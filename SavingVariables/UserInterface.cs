@@ -25,6 +25,18 @@ namespace SavingVariables
             Console.Write(dialog.Prompt());
             user_choice = Console.ReadLine();
         }
+        private void AttemptToRemoveVariableWithUserInput()
+        {
+            try
+            {
+                variableDb.RemoveVariable(assignment.AssignmentVariable);
+                Console.WriteLine(dialog.ClearVariableResponse(assignment.AssignmentVariable));
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine(dialog.ErrorVariableDoesNotExist(assignment.AssignmentVariable));
+            }
+        }
         private void ResetAssignmentBooleans()
         {
             assignment.IsVariableMarkedForRemoval = false;
@@ -38,8 +50,7 @@ namespace SavingVariables
             }
             else
             {
-                variableDb.RemoveVariable(assignment.AssignmentVariable);
-                Console.WriteLine(dialog.ClearVariableResponse(assignment.AssignmentVariable));
+                AttemptToRemoveVariableWithUserInput();
             }
         }
         private void AddAndRespondToNewVariableAssignment()

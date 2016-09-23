@@ -30,6 +30,10 @@ namespace SavingVariables
         {
             return string.Format("  = Error! '{0}' is already defined!", variable);
         }
+        public string ErrorVariableDoesNotExist(string variable)
+        {
+            return string.Format("  = Error! Cannot remove '{0}' as it has not been saved with a value yet!", variable);
+        }
 
         public string ListAllHeader()
         {
