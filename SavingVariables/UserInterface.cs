@@ -67,18 +67,15 @@ namespace SavingVariables
         }
         private void AddAndRespondToNewVariableAssignment()
         {
-           
-
-                if (!DoesVariableAlreadyExistInDb())
-                {
-                    variableDb.AddVariable(assignment.AssignmentVariable, assignment.AssignmentValue);
-                    Console.WriteLine(dialog.SaveNewVariableResponse(assignment.AssignmentVariable, assignment.AssignmentValue.ToString()));
-                }
-                else
-                {
-                    Console.WriteLine(dialog.ErrorNewVariableResponse(assignment.AssignmentVariable));
-                }
-            
+            if (!DoesVariableAlreadyExistInDb())
+            {
+                variableDb.AddVariable(assignment.AssignmentVariable, assignment.AssignmentValue);
+                Console.WriteLine(dialog.SaveNewVariableResponse(assignment.AssignmentVariable, assignment.AssignmentValue.ToString()));
+            }
+            else
+            {
+                Console.WriteLine(dialog.ErrorNewVariableResponse(assignment.AssignmentVariable));
+            }
         }
         public void AcceptUserInputForAction(string input)
         {

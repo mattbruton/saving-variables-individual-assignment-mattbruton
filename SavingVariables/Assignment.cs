@@ -16,9 +16,9 @@ namespace SavingVariables
         public bool ValueUnchanged = true;
         public bool IsVariableMarkedForRemoval;
 
-        public Regex AssignmentPattern = new Regex(@"(\s*(?<Variable>[A-Za-z])\s*=\s*(?<Value>[-]?\d*)\s*)");
-        public Regex RemoveSinglePattern = new Regex(@"(\s*(?<Command>(clear|delete|remove))\s*(?<Variable>[A-Za-z])\s*)");
-        public Regex ShowSinglePattern = new Regex(@"(\s*(?<Command>(list|show))\s*(?<Variable>[A-Za-z])\s*)");
+        private Regex AssignmentPattern = new Regex(@"(\s*(?<Variable>[A-Za-z])\s*=\s*(?<Value>[-]?\d*)\s*)");
+        private Regex RemoveSinglePattern = new Regex(@"(\s*(?<Command>(clear|delete|remove))\s*(?<Variable>[A-Za-z])\s*)");
+        private Regex ShowSinglePattern = new Regex(@"(\s*(?<Command>(list|show))\s*(?<Variable>[A-Za-z])\s*)");
         
         public bool CheckIfInputMatchesAssignmentPattern(string input)
         {
@@ -78,13 +78,13 @@ namespace SavingVariables
 
         public void AssignUserInputToProperties(Match match)
         {
-            AssignmentVariable = match.Groups["Variable"].Value;
+            AssignmentVariable = match.Groups["Variable"].Value.ToLower();
             AssignmentValue = Convert.ToInt32(match.Groups["Value"].Value);
         }
 
         public void AssignVariableNameToProperty(Match match)
         {
-            AssignmentVariable = match.Groups["Variable"].Value;
+            AssignmentVariable = match.Groups["Variable"].Value.ToLower();
         }
     }
 }
