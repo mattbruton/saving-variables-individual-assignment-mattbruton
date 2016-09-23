@@ -79,7 +79,7 @@ namespace SavingVariables
         }
         public void AcceptUserInputForAction(string input)
         {
-            if (input != "lastp")
+            if (input != "lastq")
             {
                 stack.SetLastExpOrCommand(input);
             }
@@ -101,7 +101,7 @@ namespace SavingVariables
                         Console.ReadKey();
                         break;
                     }
-                case "lastp":
+                case "lastq":
                     {
                         Console.WriteLine(stack.LastExpOrCommand);
                         break;
