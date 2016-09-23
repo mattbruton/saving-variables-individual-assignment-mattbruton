@@ -25,6 +25,28 @@ namespace SavingVariables
             Console.Write(dialog.Prompt());
             user_choice = Console.ReadLine();
         }
+        private void ResetAssignmentBooleans()
+        {
+            assignment.IsVariableMarkedForRemoval = false;
+            assignment.ValueUnchanged = true;
+        }
+        private void DetermineIfUserWantsToShowOrRemoveItem()
+        {
+            if (!assignment.IsVariableMarkedForRemoval)
+            {
+                Console.WriteLine(dialog.ShowSingleVariableAndValue(variableDb.FindVariableByName(assignment.AssignmentVariable)));
+            }
+            else
+            {
+                variableDb.RemoveVariable(assignment.AssignmentVariable);
+                Console.WriteLine(dialog.ClearVariableResponse(assignment.AssignmentVariable));
+            }
+        }
+        private void AddAndRespondToNewVariableAssignment()
+        {
+            variableDb.AddVariable(assignment.AssignmentVariable, assignment.AssignmentValue);
+            Console.WriteLine(dialog.SaveNewVariableResponse(assignment.AssignmentVariable, assignment.AssignmentValue.ToString()));
+        }
         public void AcceptUserInputForAction(string input)
         {
             if (input != "lastp")
@@ -73,28 +95,18 @@ namespace SavingVariables
                         {
                             if (!assignment.ValueUnchanged)
                             {
-                                variableDb.AddVariable(assignment.AssignmentVariable, assignment.AssignmentValue);
-                                Console.WriteLine(dialog.SaveNewVariableResponse(assignment.AssignmentVariable, assignment.AssignmentValue.ToString()));
+                                AddAndRespondToNewVariableAssignment();
                             }
                             else
                             {
-                                if (!assignment.IsVariableMarkedForRemoval)
-                                {
-                                    Console.WriteLine(dialog.ShowSingleVariableAndValue(variableDb.FindVariableByName(assignment.AssignmentVariable)));
-                                }
-                                else
-                                {
-                                    variableDb.RemoveVariable(assignment.AssignmentVariable);
-                                    Console.WriteLine(dialog.ClearVariableResponse(assignment.AssignmentVariable));
-                                }
+                                DetermineIfUserWantsToShowOrRemoveItem();
                             }
                         }
                         else
                         {
                             Console.WriteLine(dialog.CommandNotRecognized());
                         }
-                        assignment.IsVariableMarkedForRemoval = false;
-                        assignment.ValueUnchanged = true;
+                        ResetAssignmentBooleans();
                         break;
                     }
             }
