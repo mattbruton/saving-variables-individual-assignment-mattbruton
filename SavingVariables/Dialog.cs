@@ -15,7 +15,7 @@ namespace SavingVariables
         }
         public string CommandNotRecognized()
         {
-            return string.Format("Command not recognized, try typing --help for a list of valid commands.");
+            return string.Format("Command not recognized, try typing 'help' for a list of valid commands.");
         }
         public string SaveNewVariableResponse(string variable, string value)
         {
@@ -34,7 +34,10 @@ namespace SavingVariables
         {
             return string.Format("  = Error! Cannot remove '{0}' as it has not been saved with a value yet!", variable);
         }
-
+        public string EmptyDatabaseResponse()
+        {
+            return string.Format("  The database is empty, nothing to show.");
+        }
         public string ListAllHeader()
         {
             return string.Format("Name -> Value");
@@ -62,7 +65,7 @@ namespace SavingVariables
 
         public string HelpResponse()
         {
-            return string.Format("List of Valid Commands: \n\nclear | delete | remove x - Removes saved variable from database. Replace 'x' with any variable of your choosing. \n\nclear | delete | remove all - Removes ALL saved variables from database. \n\nexit | quit - Exits the program. \n\nlastq - Shows last entered command or expression. \n\nshow all - Shows all saved variables and their stored values.");
+            return string.Format("List of Valid Commands: \n\nclear | delete | remove x - Removes saved variable from database. Replace 'x' with any variable of your choosing. \n\nclear | delete | remove all - Removes ALL saved variables from database. \n\nexit | quit - Exits the program. \n\nlastq - Shows last entered command or expression. \n\nlist all | show all - Shows all saved variables and their stored values.");
         }
     }
 }
