@@ -12,7 +12,10 @@ namespace SavingVariables
         {
             return ">>";
         }
-
+        public string CommandNotRecognized()
+        {
+            return string.Format("Command not recognized, try typing --help for a list of valid commands.");
+        }
         public string SaveNewVariableResponse(string variable, string value)
         {
             return string.Format("  = '{0}' saved as '{1}'", variable, value);

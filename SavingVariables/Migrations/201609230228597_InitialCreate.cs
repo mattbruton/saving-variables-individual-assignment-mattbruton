@@ -11,11 +11,11 @@ namespace SavingVariables.Migrations
                 "dbo.Variables",
                 c => new
                     {
-                        VariableId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 1),
                         Value = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.VariableId);
+                .PrimaryKey(t => t.Id);
             
         }
         

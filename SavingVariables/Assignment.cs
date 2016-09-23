@@ -14,7 +14,7 @@ namespace SavingVariables
 
         public bool IsInputValid;
 
-        public Regex AssignmentPattern = new Regex(@"(\s*(?<Variable>[A-Za-z])\s=\s(?<Value>[-]?\d*)\s*)");
+        public Regex AssignmentPattern = new Regex(@"(\s*(?<Variable>[A-Za-z])\s*=\s*(?<Value>[-]?\d*)\s*)");
         //public Regex RemoveSinglePattern = new Regex(@"(\s*(?<Command>(clear)|(delete)|(remove))\s(?<Variable>[A-Z])\s*)");
         //public Regex ShowSinglePttern = new Regex(@"(?<Command>(list)|(show))\s(?<Variable>[A-Z])\s*)");
         

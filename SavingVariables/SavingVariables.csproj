@@ -72,9 +72,9 @@
     <Compile Include="DAL\VariableRepository.cs" />
     <Compile Include="Dialog.cs" />
     <Compile Include="Assignment.cs" />
-    <Compile Include="Migrations\201609182114278_InitialCreate.cs" />
-    <Compile Include="Migrations\201609182114278_InitialCreate.Designer.cs">
-      <DependentUpon>201609182114278_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201609230228597_InitialCreate.cs" />
+    <Compile Include="Migrations\201609230228597_InitialCreate.Designer.cs">
+      <DependentUpon>201609230228597_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Variable.cs" />
@@ -88,8 +88,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609182114278_InitialCreate.resx">
-      <DependentUpon>201609182114278_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609230228597_InitialCreate.resx">
+      <DependentUpon>201609230228597_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

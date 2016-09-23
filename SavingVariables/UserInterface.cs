@@ -1,8 +1,11 @@
 ﻿using System;
+using SavingVariables.DAL;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SavingVariables.Models;
 
 namespace SavingVariables
 {
@@ -11,8 +14,14 @@ namespace SavingVariables
         Dialog dialog = new Dialog();
         Assignment assignment = new Assignment();
         Stack stack = new Stack();
+
+
+
+        private VariableRepository variableDb = new VariableRepository(new VariableContext());
+        
         public bool UserIsReadyToExit;
         public string user_choice;
+
         public void PromptUser()
         {
             Console.Write(dialog.Prompt());
@@ -20,13 +29,18 @@ namespace SavingVariables
         }
         public void AcceptUserInputForAction(string input)
         {
-            stack.SetLastExpOrCommand(input);
+            if (input != "lastp")
+            {
+                stack.SetLastExpOrCommand(input);
+            }
             switch (input.ToLower())
             {
                 case "remove all":
                 case "clear all":
                 case "delete all":
                     {
+                        variableDb.RemoveAllVariables();
+                        Console.WriteLine(dialog.ClearAllResponse());
                         break;
                     }
                 case "exit":
@@ -45,6 +59,12 @@ namespace SavingVariables
                 case "show all":
                 case "list all":
                     {
+                        Console.WriteLine(dialog.ListAllHeader());
+                        List<Variable> all_var = variableDb.GetVariables();
+                        foreach (var variable in all_var)
+                        {
+                            Console.WriteLine(dialog.ListAllItem(variable.Name, variable.Value.ToString()));
+                        }
                         break;
                     }
                 default:
@@ -52,7 +72,12 @@ namespace SavingVariables
                         assignment.CheckIfUserInputIsValid(input);
                         if (assignment.IsInputValid)
                         {
+                            variableDb.AddVariable(assignment.AssignmentVariable, assignment.AssignmentValue);
                             Console.WriteLine(dialog.SaveNewVariableResponse(assignment.AssignmentVariable, assignment.AssignmentValue.ToString()));
+                        }
+                        else
+                        {
+                            Console.WriteLine(dialog.CommandNotRecognized());
                         }
                         break;
                     }
