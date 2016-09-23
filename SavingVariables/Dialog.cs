@@ -15,7 +15,7 @@ namespace SavingVariables
         }
         public string CommandNotRecognized()
         {
-            return string.Format("Command not recognized, try typing --help for a list of valid commands.");
+            return string.Format("Command not recognized, try typing 'help' for a list of valid commands.");
         }
         public string SaveNewVariableResponse(string variable, string value)
         {

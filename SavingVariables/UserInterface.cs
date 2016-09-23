@@ -128,7 +128,7 @@ namespace SavingVariables
                         Console.WriteLine(stack.LastExpOrCommand);
                         break;
                     }
-                case "--help":
+                case "help":
                     {
                         Console.WriteLine(dialog.HelpResponse());
                         break;
