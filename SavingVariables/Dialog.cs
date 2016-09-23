@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SavingVariables.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,10 @@ namespace SavingVariables
         public string SaveNewVariableResponse(string variable, string value)
         {
             return string.Format("  = '{0}' saved as '{1}'", variable, value);
+        }
+        public string ShowSingleVariableAndValue(Variable variable)
+        {
+            return string.Format("  = '{0}' is currently saved as '{1}'.", variable.Name, variable.Value);
         }
 
         public string ErrorNewVariableResponse(string variable)

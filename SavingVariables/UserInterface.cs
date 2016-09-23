@@ -15,8 +15,6 @@ namespace SavingVariables
         Assignment assignment = new Assignment();
         Stack stack = new Stack();
 
-
-
         private VariableRepository variableDb = new VariableRepository(new VariableContext());
         
         public bool UserIsReadyToExit;
@@ -70,15 +68,33 @@ namespace SavingVariables
                 default:
                     {
                         assignment.CheckIfUserInputIsValid(input);
+
                         if (assignment.IsInputValid)
                         {
-                            variableDb.AddVariable(assignment.AssignmentVariable, assignment.AssignmentValue);
-                            Console.WriteLine(dialog.SaveNewVariableResponse(assignment.AssignmentVariable, assignment.AssignmentValue.ToString()));
+                            if (!assignment.ValueUnchanged)
+                            {
+                                variableDb.AddVariable(assignment.AssignmentVariable, assignment.AssignmentValue);
+                                Console.WriteLine(dialog.SaveNewVariableResponse(assignment.AssignmentVariable, assignment.AssignmentValue.ToString()));
+                            }
+                            else
+                            {
+                                if (!assignment.IsVariableMarkedForRemoval)
+                                {
+                                    Console.WriteLine(dialog.ShowSingleVariableAndValue(variableDb.FindVariableByName(assignment.AssignmentVariable)));
+                                }
+                                else
+                                {
+                                    variableDb.RemoveVariable(assignment.AssignmentVariable);
+                                    Console.WriteLine(dialog.ClearVariableResponse(assignment.AssignmentVariable));
+                                }
+                            }
                         }
                         else
                         {
                             Console.WriteLine(dialog.CommandNotRecognized());
                         }
+                        assignment.IsVariableMarkedForRemoval = false;
+                        assignment.ValueUnchanged = true;
                         break;
                     }
             }
