@@ -10,9 +10,13 @@ namespace SavingVariables
     {
         static void Main(string[] args)
         {
-            Dialog UI = new Dialog();
-            Console.WriteLine(UI.HelpResponse());
-            Console.ReadKey();
+            UserInterface UI = new UserInterface();
+
+            while (!UI.UserIsReadyToExit)
+            {                            
+                UI.PromptUser();
+                UI.AcceptUserInputForAction(UI.user_choice);
+            }
         }
     }
-}
+}   

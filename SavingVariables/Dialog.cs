@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SavingVariables.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,15 +13,26 @@ namespace SavingVariables
         {
             return ">>";
         }
-
+        public string CommandNotRecognized()
+        {
+            return string.Format("Command not recognized, try typing --help for a list of valid commands.");
+        }
         public string SaveNewVariableResponse(string variable, string value)
         {
             return string.Format("  = '{0}' saved as '{1}'", variable, value);
+        }
+        public string ShowSingleVariableAndValue(Variable variable)
+        {
+            return string.Format("  = '{0}' is currently saved as '{1}'.", variable.Name, variable.Value);
         }
 
         public string ErrorNewVariableResponse(string variable)
         {
             return string.Format("  = Error! '{0}' is already defined!", variable);
+        }
+        public string ErrorVariableDoesNotExist(string variable)
+        {
+            return string.Format("  = Error! Cannot remove '{0}' as it has not been saved with a value yet!", variable);
         }
 
         public string ListAllHeader()
