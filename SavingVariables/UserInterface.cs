@@ -42,6 +42,18 @@ namespace SavingVariables
             assignment.IsVariableMarkedForRemoval = false;
             assignment.ValueUnchanged = true;
         }
+        private bool DoesVariableAlreadyExistInDb()
+        {
+            Variable testVar = new Variable { Name = assignment.AssignmentVariable, Value = 0 };
+            if (variableDb.FindVariableByName(testVar.Name) != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         private void DetermineIfUserWantsToShowOrRemoveItem()
         {
             if (!assignment.IsVariableMarkedForRemoval)
@@ -55,8 +67,18 @@ namespace SavingVariables
         }
         private void AddAndRespondToNewVariableAssignment()
         {
-            variableDb.AddVariable(assignment.AssignmentVariable, assignment.AssignmentValue);
-            Console.WriteLine(dialog.SaveNewVariableResponse(assignment.AssignmentVariable, assignment.AssignmentValue.ToString()));
+           
+
+                if (!DoesVariableAlreadyExistInDb())
+                {
+                    variableDb.AddVariable(assignment.AssignmentVariable, assignment.AssignmentValue);
+                    Console.WriteLine(dialog.SaveNewVariableResponse(assignment.AssignmentVariable, assignment.AssignmentValue.ToString()));
+                }
+                else
+                {
+                    Console.WriteLine(dialog.ErrorNewVariableResponse(assignment.AssignmentVariable));
+                }
+            
         }
         public void AcceptUserInputForAction(string input)
         {
