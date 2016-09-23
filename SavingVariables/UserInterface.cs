@@ -65,6 +65,22 @@ namespace SavingVariables
                 AttemptToRemoveVariableWithUserInput();
             }
         }
+        private void ShowProperResponseToListAllQuery()
+        {
+            List<Variable> all_var = variableDb.GetVariables();
+            if (all_var.Count == 0)
+            {
+                Console.WriteLine(dialog.EmptyDatabaseResponse());
+            }
+            else
+            {
+                Console.WriteLine(dialog.ListAllHeader());
+                foreach (var variable in all_var)
+                {
+                    Console.WriteLine(dialog.ListAllItem(variable.Name, variable.Value.ToString()));
+                }
+            }
+        }
         private void AddAndRespondToNewVariableAssignment()
         {
             if (!DoesVariableAlreadyExistInDb())
@@ -101,20 +117,20 @@ namespace SavingVariables
                         Console.ReadKey();
                         break;
                     }
+                case "show all":
+                case "list all":
+                    {
+                        ShowProperResponseToListAllQuery();
+                        break;
+                    }
                 case "lastq":
                     {
                         Console.WriteLine(stack.LastExpOrCommand);
                         break;
                     }
-                case "show all":
-                case "list all":
+                case "--help":
                     {
-                        Console.WriteLine(dialog.ListAllHeader());
-                        List<Variable> all_var = variableDb.GetVariables();
-                        foreach (var variable in all_var)
-                        {
-                            Console.WriteLine(dialog.ListAllItem(variable.Name, variable.Value.ToString()));
-                        }
+                        Console.WriteLine(dialog.HelpResponse());
                         break;
                     }
                 default:
