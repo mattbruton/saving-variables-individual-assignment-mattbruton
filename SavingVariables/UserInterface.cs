@@ -15,7 +15,7 @@ namespace SavingVariables
         Assignment assignment = new Assignment();
         Stack stack = new Stack();
 
-        private VariableRepository variableDb = new VariableRepository(new VariableContext());
+        private VariableRepository variableRepo = new VariableRepository(new VariableContext());
         
         public bool UserIsReadyToExit;
         public string user_choice;
@@ -29,7 +29,7 @@ namespace SavingVariables
         {
             try
             {
-                variableDb.RemoveVariable(assignment.AssignmentVariable);
+                variableRepo.RemoveVariable(assignment.AssignmentVariable);
                 Console.WriteLine(dialog.ClearVariableResponse(assignment.AssignmentVariable));
             }
             catch (ArgumentNullException)
@@ -45,7 +45,7 @@ namespace SavingVariables
         private bool DoesVariableAlreadyExistInDb()
         {
             Variable testVar = new Variable { Name = assignment.AssignmentVariable, Value = 0 };
-            if (variableDb.FindVariableByName(testVar.Name) != null)
+            if (variableRepo.FindVariableByName(testVar.Name) != null)
             {
                 return true;
             }
@@ -58,7 +58,7 @@ namespace SavingVariables
         {
             if (!assignment.IsVariableMarkedForRemoval)
             {
-                Console.WriteLine(dialog.ShowSingleVariableAndValue(variableDb.FindVariableByName(assignment.AssignmentVariable)));
+                Console.WriteLine(dialog.ShowSingleVariableAndValue(variableRepo.FindVariableByName(assignment.AssignmentVariable)));
             }
             else
             {
@@ -67,7 +67,7 @@ namespace SavingVariables
         }
         private void ShowProperResponseToListAllQuery()
         {
-            List<Variable> all_var = variableDb.GetVariables();
+            List<Variable> all_var = variableRepo.GetVariables();
             if (all_var.Count == 0)
             {
                 Console.WriteLine(dialog.EmptyDatabaseResponse());
@@ -85,7 +85,7 @@ namespace SavingVariables
         {
             if (!DoesVariableAlreadyExistInDb())
             {
-                variableDb.AddVariable(assignment.AssignmentVariable, assignment.AssignmentValue);
+                variableRepo.AddVariable(assignment.AssignmentVariable, assignment.AssignmentValue);
                 Console.WriteLine(dialog.SaveNewVariableResponse(assignment.AssignmentVariable, assignment.AssignmentValue.ToString()));
             }
             else
@@ -105,7 +105,7 @@ namespace SavingVariables
                 case "clear all":
                 case "delete all":
                     {
-                        variableDb.RemoveAllVariables();
+                        variableRepo.RemoveAllVariables();
                         Console.WriteLine(dialog.ClearAllResponse());
                         break;
                     }
