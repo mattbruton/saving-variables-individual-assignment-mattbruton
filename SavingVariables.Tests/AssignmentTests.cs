@@ -38,5 +38,71 @@ namespace SavingVariables.Tests
 
             Assert.IsFalse(test.IsInputValid);
         }
+
+        [TestMethod]
+        public void AssignmentEnsureAssignmentNameChangedCorrectlyForShowSinglePattern()
+        {
+            Assignment test = new Assignment();
+            test.CheckIfInputMatchesShowSinglePattern("show a");
+
+            string expected_variable_name = "a";
+            string actual_variable_name = test.AssignmentVariable;
+
+            Assert.AreEqual(expected_variable_name, actual_variable_name);
+        }
+
+        [TestMethod]
+        public void AssignmentEnsureMatchShowSingleWillFailIfInputDoesNotMatch()
+        {
+            Assignment test = new Assignment();
+            test.CheckIfInputMatchesShowSinglePattern("showw a");
+
+            Assert.IsFalse(test.IsInputValid);
+        }
+
+        [TestMethod]
+        public void AssignmentEnsureAssignmentNameChangedCorrectlyForRemoveSinglePatternUsingRemove()
+        {
+            Assignment test = new Assignment();
+            test.CheckIfInputMatchesRemoveSinglePattern("remove a");
+
+            string expected_variable_name = "a";
+            string actual_variable_name = test.AssignmentVariable;
+
+            Assert.AreEqual(expected_variable_name, actual_variable_name);
+        }
+
+        [TestMethod]
+        public void AssignmentEnsureAssignmentNameChangedCorrectlyForRemoveSinglePatternUsingDelete()
+        {
+            Assignment test = new Assignment();
+            test.CheckIfInputMatchesRemoveSinglePattern("delete a");
+
+            string expected_variable_name = "a";
+            string actual_variable_name = test.AssignmentVariable;
+
+            Assert.AreEqual(expected_variable_name, actual_variable_name);
+        }
+
+        [TestMethod]
+        public void AssignmentEnsureAssignmentNameChangedCorrectlyForRemoveSinglePatternUsingClear()
+        {
+            Assignment test = new Assignment();
+            test.CheckIfInputMatchesRemoveSinglePattern("clear a");
+
+            string expected_variable_name = "a";
+            string actual_variable_name = test.AssignmentVariable;
+
+            Assert.AreEqual(expected_variable_name, actual_variable_name);
+        }
+
+        [TestMethod]
+        public void AssignmentEnsureMatchRemoveSingleWillFailIfInputDoesNotMatch()
+        {
+            Assignment test = new Assignment();
+            test.CheckIfInputMatchesShowSinglePattern("getout a");
+
+            Assert.IsFalse(test.IsInputValid);
+        }
     }
 }
